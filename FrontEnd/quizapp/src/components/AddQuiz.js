@@ -18,11 +18,11 @@ function AddQuiz() {
       alert("Title, Description, and Category are required fields.");
       return;
     }
-    const selectedCategory = isAddingNewCategory ? newCategoryInput : category;
+    const selectedCategoryValue = isAddingNewCategory ? newCategoryInput : category;
     const quiz = {
       title: title,
       description: description,
-      category: selectedCategory,
+      category: selectedCategoryValue,
       timeLimit: timeLimit || null, // Set to null if timeLimit is empty
     };
 
@@ -76,6 +76,7 @@ function AddQuiz() {
     } else {
       setIsAddingNewCategory(false);
       setCategoryInput(selectedCategory);
+      setCategory(selectedCategory);
     }
   };
   const handleNewCategoryInput=(e)=>{

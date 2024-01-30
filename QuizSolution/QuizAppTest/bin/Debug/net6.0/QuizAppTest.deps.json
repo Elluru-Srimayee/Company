@@ -2461,7 +2461,7 @@
         "runtime": {
           "Microsoft.Data.Tools.Schema.Sql.UnitTesting.dll": {
             "assemblyVersion": "17.0.0.0",
-            "fileVersion": "17.7.10.1"
+            "fileVersion": "17.7.12.0"
           }
         }
       },
@@ -2469,7 +2469,7 @@
         "runtime": {
           "Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter.dll": {
             "assemblyVersion": "17.0.0.0",
-            "fileVersion": "17.7.10.1"
+            "fileVersion": "17.7.12.0"
           }
         }
       },

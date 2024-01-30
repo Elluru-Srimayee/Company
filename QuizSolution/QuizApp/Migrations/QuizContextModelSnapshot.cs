@@ -81,10 +81,7 @@ namespace QuizApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("TimeLimit")
+                    b.Property<int?>("TimeLimit")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
