@@ -58,8 +58,8 @@ function UpdateQuiz() {
       <label htmlFor="floatingInput">Quiz Category</label>
       </div>
       <div class="form-floating mb-3">
-      <input id="floatingInput" type="number" className="form-control" placeholder="Please provide integer value in minutes." value={timeLimit} onChange={(e) => setQuiz({ ...quiz, timeLimit: e.target.value })} />
-      <label htmlFor="floatingInput">Integer TimeLimit in Minutes</label>
+      <input id="floatingInput" type="number" className="form-control" placeholder="Please provide numeric value in minutes, decimals not allowed." value={timeLimit} onChange={(e) => setQuiz({ ...quiz, timeLimit: e.target.value })} />
+      <label htmlFor="floatingInput">TimeLimit in Minutes</label>
       </div>
       <button onClick={clickUpdate} className="btn btn-primary">Update Quiz</button>
     </div>

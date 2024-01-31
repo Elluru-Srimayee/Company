@@ -13,6 +13,7 @@ function QuestionsByQuizId() {
   const token = localStorage.getItem("token");
   const [decrementInterval,setDecrementInterval]=useState(null);
   const totalQuestions=questionList.length;
+  const [attemptCount, setAttemptCount] = useState(0);
   useEffect(() => {
     if (location.state && location.state.quizId) {
       checkQuizCompletion(location.state.quizId);
@@ -44,6 +45,33 @@ function QuestionsByQuizId() {
     });
   };
 
+  // const checkQuizCompletion = (quizId) => {
+  //   const username = localStorage.getItem("username");
+
+  //   fetch(`http://localhost:5057/api/QuizResult/results-with-total-score/${username}/${quizId}`, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then(async (response) => {
+  //       const data = await response.json();
+
+  //       if (data.quizResults.length > 0) {
+  //         alert("You have already completed this quiz. Multiple attempts are not allowed.");
+  //         navigate("/quizresult", {
+  //           state: {
+  //             username: localStorage.getItem("username"),
+  //             quizId: location.state.quizId,
+  //           },
+  //         })
+  //       } else {
+  //         getQuestionsByQuizId(quizId);
+  //       }
+        
+  //     })
+  //     .catch((error) => console.error("Error checking quiz completion:", error));
+  // };
   const checkQuizCompletion = (quizId) => {
     const username = localStorage.getItem("username");
 
@@ -57,18 +85,45 @@ function QuestionsByQuizId() {
         const data = await response.json();
 
         if (data.quizResults.length > 0) {
-          alert("You have already completed this quiz. Multiple attempts are not allowed.");
-          navigate("/quizresult", {
-            state: {
-              username: localStorage.getItem("username"),
-              quizId: location.state.quizId,
-            },
-          })
+          const totalScore = data.quizResults[0].totalScore;
+          const passingScore = (totalQuestions / 2);
+          console.log('passingScore is: %d',passingScore);
+          console.log('totalQuestions is:%d',totalQuestions);
+
+          if (totalScore >= passingScore) {
+            // User passed the quiz, no more attempts allowed
+            alert("You have already completed this quiz with a passing score. No more attempts allowed.");
+            navigate("/quizresult", {
+              state: {
+                username: localStorage.getItem("username"),
+                quizId: location.state.quizId,
+              },
+            });
+          } else if (attemptCount < 2) {
+            // User failed, allow another attempt
+            setAttemptCount(attemptCount + 1);
+            getQuestionsByQuizId(quizId);
+          } else {
+            // User has already used all attempts, show appropriate message
+            alert("You have used all available attempts for this quiz.");
+            navigate("/quizresult", {
+              state: {
+                username: localStorage.getItem("username"),
+                quizId: location.state.quizId,
+              },
+            });
+          }
         } else {
+          // No previous attempts, allow the user to take the quiz for the first attempt
+          setAttemptCount(1);
           getQuestionsByQuizId(quizId);
         }
       })
       .catch((error) => console.error("Error checking quiz completion:", error));
+  };
+
+  const setTotalQuestions = (count) => {
+    setTotalQuestions(count);
   };
 
   const getQuestionsByQuizId = (quizId) => {
@@ -83,12 +138,11 @@ function QuestionsByQuizId() {
       .then(async (data) => {
         var myData = await data.json();
         if(myData.length>0){
-        console.log(myData);
-        console.log("The total number of questions present in this quiz are",myData.length);
         setQuestionList(myData);
         if (myData.length > 0 && myData[0].timeLimit) {
           setTimeRemaining(myData[0].timeLimit * 60); // Update time remaining when time limit changes
         }
+        setTotalQuestions(myData.length); 
       }
       else{
         alert('No questions available in this quiz yet!')
