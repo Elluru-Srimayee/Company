@@ -135,6 +135,10 @@ namespace QuizApp.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<byte[]>("Key")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");

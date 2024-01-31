@@ -5,6 +5,7 @@ import "./Login.css";
 function LoginUser(){
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
+    //const [email,setEmail]=useState("");
     const navigate = useNavigate();
     var [usernameError,setUsernameError]=useState("");
     var [passwordError,setPasswordError]=useState("");
@@ -47,6 +48,8 @@ function LoginUser(){
             localStorage.setItem("username",username);
             var role=userData.data.role;
             localStorage.setItem("role",role);
+            var email=userData.data.email;
+            localStorage.setItem("email",email);
             alert('Welcome to the quizapp :'+username);
             navigate("/")
             

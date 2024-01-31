@@ -583,3 +583,4 @@ C:\Users\2000112408\QuizApplication\QuizSolution\QuizApp\obj\Debug\net6.0\refint
 C:\Users\2000112408\QuizApplication\QuizSolution\QuizApp\obj\Debug\net6.0\QuizApp.pdb
 C:\Users\2000112408\QuizApplication\QuizSolution\QuizApp\obj\Debug\net6.0\QuizApp.genruntimeconfig.cache
 C:\Users\2000112408\QuizApplication\QuizSolution\QuizApp\obj\Debug\net6.0\ref\QuizApp.dll
+C:\Users\2000112408\QuizApplication\QuizSolution\QuizApp\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll

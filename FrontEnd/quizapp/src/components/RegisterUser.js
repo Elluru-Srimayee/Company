@@ -9,6 +9,7 @@ function RegisterUser(){
     const [password,setPassword] = useState("");
     const [repassword,setrePassword] = useState("");
     const [role,setRole] = useState("");
+    const [mail,setmail]=useState("");
     var [usernameError,setUsernameError]=useState("");
     var [passwordError,setPasswordError]=useState("");
     var [rePasswordError,setRePasswordError]=useState("");
@@ -90,7 +91,11 @@ function RegisterUser(){
             <input type="text" class="form-control" id="floatingInput" placeholder="Username" value={username} onChange={(e)=>{setUsername(e.target.value)}}/>
             <label for="floatingInput">Username</label>
         </div>
-            <label className="alert alert-danger">{usernameError}</label>
+        <label className="alert alert-danger">{usernameError}</label>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Email" value={mail} onChange={(e)=>{setmail(e.target.value)}}/>
+            <label for="floatingInput">Mail</label>
+        </div> 
         <div class="form-floating">
             <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
             value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
